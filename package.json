@@ -1,0 +1,19 @@
+{
+  "name": "googlephotos-extractor",
+  "version": "1.0.0",
+  "description": "Extract all googlephotos images from a specific user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaniina/googlephotos-extractor.git"
+  },
+  "author": "Anna Vessereau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vaniina/googlephotos-extractor/issues"
+  },
+  "homepage": "https://github.com/Vaniina/googlephotos-extractor#readme"
+}
