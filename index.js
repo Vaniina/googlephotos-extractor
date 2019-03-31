@@ -1,3 +1,4 @@
+const fs = require('fs');
 const http = require('http');
 const axios = require('axios');
 const {google} = require('googleapis');
@@ -34,7 +35,7 @@ http.createServer(async (req, res) => {
         }
     }
 
-    res.writeHead(200,{'Content-Type': 'text/html'});
+    res.writeHead(200,{'Content-Type': 'text/html;charset=UTF-8'});
 
     if (extracting) {
         res.write('Récupération des photos...');
@@ -61,5 +62,24 @@ async function getAllPhotos (accessToken) {
 }
 
 async function downloadPhoto (photo) {
-
+    await downloadImage(
+        photo.baseUrl + '=w' + photo.mediaMetadata.width +'-h' + photo.mediaMetadata.height,
+        'pictures/' + photo.filename
+    );
 }
+
+// https://stackoverflow.com/questions/12740659/downloading-images-with-node-js
+const downloadImage = (url, image_path) => axios({
+    url: url,
+    responseType: 'stream',
+}).then(response => {
+    response.data.pipe(fs.createWriteStream(image_path));
+
+    return {
+        status: true,
+        error: '',
+    };
+}).catch(error => ({
+    status: false,
+    error: 'Error: ' + error.message,
+}));
