@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+.env
+node_modules
+package-lock.json
+yarn.lock
+output
